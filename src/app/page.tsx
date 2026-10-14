@@ -1,69 +1,147 @@
-import Image from "next/image";
+import { Icon } from "@/components/icons";
+import { ServiceCard } from "@/components/cards";
+import { CoverageExplorer } from "@/components/sections/coverage-explorer";
+import { Hero } from "@/components/sections/hero";
+import {
+  AdvantagesSection,
+  BlogTeaser,
+  CaseStudiesSection,
+  CtaBand,
+  FaqSection,
+  ProcessSection,
+  RoadsSection,
+  TrustStrip,
+} from "@/components/sections/blocks";
+import { BtnLink, Section, SectionHeading } from "@/components/ui";
+import { services } from "@/data/services";
+import { buildMetadata } from "@/lib/seo";
+import { fa } from "@/lib/utils";
 
-export default function Home() {
+export const metadata = buildMetadata({
+  title: "امداد خودرو تهران و آزادراه‌های شمال | خودرو چاره ۲۴ ساعته",
+  description:
+    "امداد خودرو شبانه‌روزی در تهران، شهرهای استان تهران و آزادراه تهران-شمال، چالوس، هراز و فیروزکوه: باتری‌به‌باتری، پنچرگیری، سوخت‌رسانی، قفل، یدک‌کشی و تعمیر در محل با تعرفه شفاف.",
+  path: "/",
+  keywords: [
+    "امداد خودرو",
+    "امداد خودرو تهران",
+    "امداد خودرو آزادراه تهران شمال",
+    "امداد خودرو جاده چالوس",
+    "امداد خودرو هراز",
+    "یدک کش تهران",
+    "باتری به باتری",
+  ],
+});
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <Hero />
+      <TrustStrip />
+
+      <Section id="services">
+        <SectionHeading
+          eyebrow="خدمات امداد خودرو"
+          title="هر خرابی، یک راه‌حل تخصصی دارد"
+          description="از باتری خوابیده در پارکینگ تا خودروی داغ‌کرده در گردنه گدوک؛ هر خدمت با تیم و تجهیزات مخصوص خودش انجام می‌شود تا مشکل در همان محل حل شود."
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+          {services.map((service) => (
+            <ServiceCard key={service.slug} service={service} />
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <BtnLink href="/services" variant="outline" className="px-5 py-3.5">
+            جزئیات کامل خدمات
+          </BtnLink>
+          <BtnLink href="/pricing" className="px-5 py-3.5">
+            سیاست تعرفه‌ها
+          </BtnLink>
+        </div>
+      </Section>
+
+      <AdvantagesSection />
+
+      <Section tone="muted" id="coverage">
+        <SectionHeading
+          eyebrow="مناطق تحت پوشش"
+          title="از تجریش تا پرند و از فشم تا ورامین"
+          description="۲۲ منطقه و شهر اصلی، با پوشش ریز محله‌ها و روستاهای اطراف. نام شهر یا محله خود را جست‌وجو کنید تا زمان تقریبی اعزام را ببینید."
+        />
+        <div className="mt-10">
+          <CoverageExplorer />
+        </div>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          <BtnLink href="/areas" variant="outline" className="px-5 py-3.5">
+            فهرست کامل مناطق
+          </BtnLink>
+        </div>
+      </Section>
+
+      <RoadsSection />
+
+      <ProcessSection />
+      <CaseStudiesSection />
+
+      <Section tone="muted">
+        <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <div>
+            <SectionHeading
+              align="start"
+              eyebrow="تعرفه‌ها"
+              title="تعرفه شفاف؛ بدون هزینه پنهان"
+              description="سیاست ما ساده است: پیش از اعزام، هزینه را می‌دانید و پس از انجام خدمت پرداخت می‌کنید. عددی که در تماس توافق شود، در پایان همان عدد پرداخت می‌شود."
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <ul className="mt-6 flex flex-col gap-3">
+              {[
+                "اعلام هزینه پیش از اعزام، بر اساس منطقه و نوع خدمت",
+                "قطعات و باتری با فاکتور رسمی و ضمانت",
+                "عدم دریافت هزینه در صورت انجام نشدن خدمت",
+                "بدون مازاد تعرفه شبانه و تعطیلات",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3 text-sm leading-7 text-ink-700">
+                  <span className="mt-0.5 inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-trust-100 text-trust-700">
+                    <Icon name="shield" className="size-3.5" />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7">
+              <BtnLink href="/pricing" className="px-5 py-3.5">
+                مشاهده جزئیات تعرفه‌ها
+              </BtnLink>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-ink-100 bg-white p-6 shadow-card">
+            <h3 className="text-lg font-extrabold text-ink-900">
+              چه چیزی بر هزینه امداد تأثیر دارد؟
+            </h3>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              {[
+                { t: "فاصله تا محل", d: "بر اساس نزدیک‌ترین پایگاه امداد محاسبه می‌شود." },
+                { t: "نوع خدمت", d: "باتری، پنچری و سوخت با تعرفه پایه؛ یدک‌کشی با تعرفه مسافت." },
+                { t: "نوع خودرو", d: "سواری، شاسی‌بلند یا وانت؛ ابزار لازم بر همین اساس تعیین می‌شود." },
+                { t: "شرایط دسترسی", d: "پارکینگ طبقاتی، مسیر خاکی یا شانه آزادراه." },
+              ].map((item) => (
+                <div key={item.t} className="rounded-2xl bg-ink-50 p-4">
+                  <p className="text-sm font-extrabold text-ink-800">{item.t}</p>
+                  <p className="mt-1.5 text-xs leading-6 text-ink-600">{item.d}</p>
+                </div>
+              ))}
+            </div>
+            <p className="nums mt-4 rounded-2xl border border-brand-200 bg-brand-50 px-4 py-3 text-xs leading-6 text-brand-800">
+              میانگین رسیدن تیم امداد در تهران {fa(25)} دقیقه و در محورهای جاده‌ای {fa(45)} تا{" "}
+              {fa(60)} دقیقه است.
+            </p>
+          </div>
         </div>
-      </main>
-    </div>
+      </Section>
+
+      <BlogTeaser />
+      <FaqSection />
+      <CtaBand />
+    </>
   );
 }

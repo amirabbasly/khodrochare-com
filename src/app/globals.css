@@ -1,26 +1,306 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ==========================================================================
+   خودرو چاره — سیستم طراحی (Design Tokens)
+   رنگ‌ها: سرمه‌ای جاده‌ای (ink) + کهربایی امدادی (brand) + قرمز هشدار (alert)
+   ========================================================================== */
+
+@theme {
+  --font-sans: var(--font-vazirmatn), "Vazirmatn", "Segoe UI", system-ui,
+    -apple-system, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+
+  /* سرمه‌ای */
+  --color-ink-50: #f5f7fb;
+  --color-ink-100: #e9edf6;
+  --color-ink-200: #d1d9e8;
+  --color-ink-300: #a8b5cd;
+  --color-ink-400: #7888a8;
+  --color-ink-500: #526287;
+  --color-ink-600: #3a486a;
+  --color-ink-700: #293553;
+  --color-ink-800: #1a2340;
+  --color-ink-900: #111731;
+  --color-ink-950: #080c1d;
+
+  /* کهربایی امدادی */
+  --color-brand-50: #fff9ec;
+  --color-brand-100: #fff0cd;
+  --color-brand-200: #ffdf96;
+  --color-brand-300: #ffc85e;
+  --color-brand-400: #ffb02e;
+  --color-brand-500: #f79009;
+  --color-brand-600: #db6a04;
+  --color-brand-700: #b64a07;
+  --color-brand-800: #93390d;
+  --color-brand-900: #7a2f0e;
+
+  /* قرمز هشدار / وضعیت اضطراری */
+  --color-alert-50: #fff1f1;
+  --color-alert-100: #ffdede;
+  --color-alert-300: #ff9c9c;
+  --color-alert-500: #e5484d;
+  --color-alert-600: #cf3238;
+  --color-alert-700: #a9262c;
+
+  /* سبز تأیید */
+  --color-trust-50: #ecfdf5;
+  --color-trust-100: #d1fae5;
+  --color-trust-500: #10b981;
+  --color-trust-600: #059669;
+  --color-trust-700: #047857;
+
+  --radius-xl2: 1.25rem;
+  --shadow-lift: 0 18px 40px -22px rgb(8 12 29 / 0.45);
+  --shadow-soft: 0 10px 30px -18px rgb(8 12 29 / 0.35);
+  --shadow-card: 0 1px 2px rgb(8 12 29 / 0.06), 0 12px 28px -18px rgb(8 12 29 / 0.28);
+
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-rise: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-pulse-ring: pulse-ring 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-beacon: beacon 1.6s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* RTL: content flows right→left, so we shift by half the doubled track */
+    transform: translateX(50%);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgb(229 72 77 / 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgb(229 72 77 / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(229 72 77 / 0);
+  }
+}
+
+@keyframes beacon {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+/* ==========================================================================
+   پایه
+   ========================================================================== */
+
+@layer base {
+  :root {
+    --header-h: 4.25rem;
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-h) + 1rem);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: white;
+    color: var(--color-ink-800);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss02" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-ink-900);
+    font-weight: 800;
+    letter-spacing: 0;
+    line-height: 1.5;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: 0.35rem;
+  }
+
+  ::selection {
+    background: var(--color-brand-300);
+    color: var(--color-ink-950);
+  }
+
+  /* اعداد فارسی در متن‌های لاتین (تلفن، کد) */
+  .nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   اجزای تکرارشونده
+   ========================================================================== */
+
+@utility wrap {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (min-width: 40rem) {
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 64rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility wrap-narrow {
+  width: 100%;
+  max-width: 52rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (min-width: 40rem) {
+    padding-inline: 1.5rem;
+  }
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.9rem 1.35rem;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+  will-change: transform;
+  &:active {
+    transform: translateY(1px) scale(0.995);
+  }
+}
+
+@utility card {
+  border-radius: 1.25rem;
+  border: 1px solid var(--color-ink-100);
+  background: white;
+  box-shadow: var(--shadow-card);
+}
+
+@utility hairline {
+  background-image: linear-gradient(
+    to left,
+    transparent,
+    var(--color-ink-200),
+    transparent
+  );
+  height: 1px;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to left, rgb(255 255 255 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+@utility bg-grid-ink {
+  background-image:
+    linear-gradient(to left, rgb(17 23 49 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(17 23 49 / 0.05) 1px, transparent 1px);
+  background-size: 38px 38px;
+}
+
+@utility mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 78%, transparent 100%);
+}
+
+@utility text-balance-fa {
+  text-wrap: balance;
+}
+
+/* نوار جاده‌ای: خط‌چین زرد روی آسفالت تیره */
+@utility road-stripes {
+  background-image: repeating-linear-gradient(
+    to left,
+    var(--color-brand-400) 0 28px,
+    transparent 28px 52px
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* نمایش تدریجی با اسکرول (بدون جاوااسکریپت)                          */
+/* اگر مرورگر animation-timeline را پشتیبانی نکند، محتوا خوانا می‌ماند. */
+/* ------------------------------------------------------------------ */
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  animation: reveal-in linear both;
+  animation-delay: var(--reveal-delay, 0ms);
+  animation-timeline: view();
+  animation-range: entry 0% entry 55%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
 }
