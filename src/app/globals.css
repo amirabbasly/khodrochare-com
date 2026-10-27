@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Vazirmatn Variable", Tahoma, system-ui, sans-serif;
+
+  --color-navy-950: #040b16;
+  --color-navy-900: #071222;
+  --color-navy-850: #0a1a30;
+  --color-navy-800: #0d213c;
+  --color-navy-700: #132c4e;
+  --color-navy-600: #1b3a63;
+  --color-navy-100: #d7e1ef;
+  --color-navy-50: #eef3f9;
+
+  --color-brand-600: #e85d00;
+  --color-brand-500: #ff7a00;
+  --color-brand-400: #ff9435;
+  --color-brand-300: #ffb066;
+  --color-brand-100: #ffe8d1;
+  --color-brand-50: #fff4e8;
+
+  --color-silver-300: #b9c7da;
+  --color-silver-400: #93a7c0;
+  --color-silver-500: #7188a5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background: var(--color-navy-950);
+  color: #e8eef7;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-brand-500);
+  color: #fff;
+}
+
+/* بافت نقطه‌ای subtle برای پس‌زمینه بخش‌های تیره */
+.dot-grid {
+  background-image: radial-gradient(rgba(147, 167, 192, 0.14) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+.dot-grid-light {
+  background-image: radial-gradient(rgba(13, 33, 60, 0.09) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+/* خط جاده — موتیف برند خودرو چاره */
+.road-line {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='58' height='4'%3E%3Crect width='34' height='4' rx='2' fill='%23ffffff' fill-opacity='0.8'/%3E%3C/svg%3E");
+  background-size: 58px 4px;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+/* انیمیشن ظاهر شدن هنگام اسکرول */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* پالس ملایم دکمه تماس شناور */
+@keyframes ring-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 122, 0, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 16px rgba(255, 122, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 122, 0, 0);
+  }
+}
+
+.ring-pulse {
+  animation: ring-pulse 2.2s infinite;
+}
+
+/* اسکرول‌بار هماهنگ با تم */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-navy-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-navy-600);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-500);
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
 }
