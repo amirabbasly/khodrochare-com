@@ -1,11 +1,11 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
-import Steps from "@/components/Steps";
-import FleetAndCenter from "@/components/FleetAndCenter";
 import WhyUs from "@/components/WhyUs";
-import Faq from "@/components/Faq";
+import Steps from "@/components/Steps";
 import RequestForm from "@/components/RequestForm";
+import Reviews from "@/components/Reviews";
+import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import MobileCallBar from "@/components/MobileCallBar";
 import { SERVICES, SITE } from "@/lib/data";
@@ -37,11 +37,11 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Services />
-        <Steps />
-        <FleetAndCenter />
         <WhyUs />
-        <Faq />
+        <Steps />
         <RequestForm />
+        <Reviews />
+        <Faq />
       </main>
       <Footer />
       <MobileCallBar />

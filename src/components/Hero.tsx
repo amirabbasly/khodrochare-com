@@ -1,76 +1,74 @@
 import Image from "next/image";
-import { BadgeCheck, Clock3, Phone, ShieldCheck, Timer, Wallet } from "lucide-react";
+import { BadgeCheck, ClipboardList, MapPin, Phone, ShieldCheck, Star, Timer } from "lucide-react";
 import { SITE, STATS } from "@/lib/data";
 import Reveal from "./Reveal";
 
 const TRUST = [
-  { icon: Timer, text: "رسیدن سریع در تهران" },
-  { icon: Wallet, text: "اعلام هزینه قبل از اعزام" },
-  { icon: ShieldCheck, text: "ضمانت خدمت و قطعه" },
+  { icon: ShieldCheck, text: "ضمانت خدمات و قطعه" },
+  { icon: Timer, text: "رسیدن حدود ۳۰ دقیقه‌ای" },
+  { icon: BadgeCheck, text: "فاکتور رسمی و قیمت شفاف" },
 ];
 
 export default function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden bg-navy-950">
-      <div className="dot-grid pointer-events-none absolute inset-0" aria-hidden />
-      {/* نوارهای مورب الهام‌گرفته از پوشش خودروهای ناوگان */}
-      <div className="pointer-events-none absolute -left-24 top-24 hidden h-64 w-10 -skew-x-[24deg] bg-brand-500/90 lg:block" aria-hidden />
-      <div className="pointer-events-none absolute -left-8 top-24 hidden h-64 w-4 -skew-x-[24deg] bg-navy-600 lg:block" aria-hidden />
+    <section id="top" className="relative overflow-hidden bg-paper">
+      <div className="dot-grid-light absolute inset-0" aria-hidden />
+      <div className="absolute -top-24 left-1/4 size-72 rounded-full bg-brand-100 blur-3xl" aria-hidden />
+      <div className="absolute bottom-0 right-0 size-80 rounded-full bg-navy-100 blur-3xl" aria-hidden />
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-40 sm:px-6 sm:pt-44 lg:pb-20">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
-          {/* متن اصلی */}
+      <div className="relative mx-auto max-w-7xl px-4 pb-16 pt-12 sm:px-6 lg:pb-20 lg:pt-16">
+        <div className="grid items-center gap-12 lg:grid-cols-2">
+          {/* متن و شعار */}
           <div>
             <Reveal>
-              <p className="inline-flex items-center gap-2 rounded-full border border-brand-500/40 bg-brand-500/10 px-4 py-1.5 text-[13px] font-bold text-brand-300">
-                <span className="relative flex size-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-brand-400 opacity-75" />
-                  <span className="relative inline-flex size-2 rounded-full bg-brand-500" />
-                </span>
-                امداد خودرو شبانه‌روزی خودرو چاره — همین حالا فعال است
-              </p>
+              <span className="inline-flex items-center gap-2 rounded-full bg-navy-900 px-4 py-1.5 text-[13px] font-bold text-white">
+                <span className="size-2 animate-pulse rounded-full bg-brand-400" aria-hidden />
+                امداد خودرو شبانه‌روزی تهران — خودرو چاره
+              </span>
             </Reveal>
 
-            <Reveal delay={100}>
-              <h1 className="mt-6 text-4xl font-black leading-[1.15] text-white sm:text-5xl lg:text-[3.6rem]">
-                خودرو خراب شده؟
-                <span className="mt-2 block text-brand-500">یک تماس، یک چاره!</span>
+            <Reveal delay={80}>
+              <h1 className="mt-6 text-4xl font-black leading-[1.25] text-navy-900 sm:text-5xl lg:text-[3.4rem] lg:leading-[1.2]">
+                در راه نمی‌مانید؛
+                <span className="block text-brand-600">خودرو چاره می‌رسد</span>
               </h1>
             </Reveal>
 
-            <Reveal delay={200}>
-              <p className="mt-6 max-w-xl text-lg leading-9 text-silver-300">
-                <strong className="font-bold text-white">خودرو چاره</strong> با ناوگان امدادی مجهز و
-                تکنسین‌های مجرب، خدمات خودرو را در محل شما انجام می‌دهد؛ از تعمیر و پنچرگیری در محل
-                تا باتری، برق خودرو و خودروبر — هر ساعت از شبانه‌روز، در سراسر تهران.
+            <Reveal delay={160}>
+              <p className="mt-5 max-w-xl text-lg leading-9 text-silver-600">
+                خودرو چاره، امداد و خدمات خودرو در محل شماست؛ تعمیر خودرو در محل، پنچرگیری، باتری،
+                برق خودرو و خودروبر و یدک‌کش — هر ساعت از شبانه‌روز و در هر نقطه تهران، فقط با یک
+                تماس یا ثبت درخواست آنلاین.
               </p>
             </Reveal>
 
-            <Reveal delay={300}>
+            <Reveal delay={240}>
               <div className="mt-8 flex flex-wrap items-center gap-3">
                 <a
                   href={SITE.phoneShortHref}
-                  className="flex items-center gap-2.5 rounded-full bg-brand-500 px-7 py-3.5 text-base font-extrabold text-navy-950 shadow-[0_16px_36px_rgba(255,122,0,0.35)] transition hover:bg-brand-400"
+                  className="ring-pulse flex items-center gap-2.5 rounded-2xl bg-brand-500 px-6 py-4 font-extrabold text-navy-950 shadow-lg shadow-brand-500/30 transition hover:bg-brand-400"
                 >
                   <Phone className="size-5" aria-hidden />
                   تماس فوری با امداد
-                  <span dir="ltr">{SITE.phoneShort}</span>
+                  <span dir="ltr" className="text-lg leading-none">
+                    {SITE.phoneShort}
+                  </span>
                 </a>
                 <a
                   href="#request"
-                  className="flex items-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-base font-bold text-white transition hover:border-brand-500 hover:text-brand-300"
+                  className="flex items-center gap-2.5 rounded-2xl border-2 border-navy-900 px-6 py-[14px] font-extrabold text-navy-900 transition hover:bg-navy-900 hover:text-white"
                 >
-                  <BadgeCheck className="size-5 text-brand-400" aria-hidden />
-                  ثبت درخواست خدمت
+                  <ClipboardList className="size-5" aria-hidden />
+                  ثبت درخواست آنلاین
                 </a>
               </div>
             </Reveal>
 
-            <Reveal delay={400}>
-              <ul className="mt-9 flex flex-wrap gap-x-7 gap-y-3 text-sm font-medium text-silver-300">
+            <Reveal delay={320}>
+              <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
                 {TRUST.map((item) => (
-                  <li key={item.text} className="flex items-center gap-2">
-                    <item.icon className="size-5 text-brand-400" aria-hidden />
+                  <li key={item.text} className="flex items-center gap-2 text-sm font-bold text-navy-800">
+                    <item.icon className="size-5 text-brand-600" aria-hidden />
                     {item.text}
                   </li>
                 ))}
@@ -78,55 +76,65 @@ export default function Hero() {
             </Reveal>
           </div>
 
-          {/* تصویر ناوگان */}
-          <Reveal delay={200} className="relative">
-            <div className="relative">
-              <div className="absolute -inset-3 -skew-x-3 rounded-[2rem] bg-navy-800" aria-hidden />
-              <div className="absolute -inset-3 translate-x-4 translate-y-4 -skew-x-3 rounded-[2rem] border-2 border-brand-500/60" aria-hidden />
-              <div className="relative overflow-hidden rounded-[1.7rem]">
-                <Image
-                  src="/images/fleet.webp"
-                  alt="ناوگان خودروهای امدادی خودرو چاره آماده خدمت‌رسانی"
-                  width={1600}
-                  height={1060}
-                  priority
-                  className="h-auto w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-navy-950/10" aria-hidden />
-              </div>
+          {/* عکس ناوگان خودرو چاره */}
+          <Reveal delay={150}>
+            <div className="relative mx-auto max-w-xl lg:max-w-none">
+              <div className="absolute -inset-3 rotate-2 rounded-[2rem] bg-navy-900" aria-hidden />
+              <div className="absolute -inset-3 -rotate-1 rounded-[2rem] bg-brand-500/85" aria-hidden />
+              <Image
+                src="/images/fleet.webp"
+                alt="ناوگان خودروهای امدادی خودرو چاره"
+                width={1600}
+                height={1061}
+                priority
+                className="relative w-full rounded-[2rem] object-cover shadow-2xl"
+              />
 
-              <div className="absolute -bottom-5 right-5 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 text-navy-900 shadow-[0_18px_40px_rgba(0,0,0,0.4)]">
-                <span className="flex size-11 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
-                  <Clock3 className="size-6" aria-hidden />
+              {/* کارت رضایت مشتریان */}
+              <a
+                href="#reviews"
+                className="float-soft absolute -top-5 right-4 rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-navy-900/5 sm:right-8"
+              >
+                <span className="flex items-center gap-1" aria-hidden>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="size-4 fill-brand-500 text-brand-500" />
+                  ))}
                 </span>
-                <div>
-                  <p className="text-lg font-black leading-5">میانگین ۳۰ دقیقه</p>
-                  <p className="text-xs font-medium text-slate-500">زمان رسیدن امداد در تهران</p>
-                </div>
-              </div>
+                <span className="mt-1 block text-sm font-extrabold text-navy-900">
+                  ۹۸٪ رضایت مشتریان
+                </span>
+                <span className="text-xs font-semibold text-brand-600">ثبت رضایت شما ←</span>
+              </a>
 
-              <div className="absolute -top-5 left-5 hidden items-center gap-2 rounded-2xl bg-navy-900/95 px-4 py-2.5 text-sm font-bold text-white shadow-lg ring-1 ring-white/10 sm:flex">
-                <ShieldCheck className="size-5 text-brand-400" aria-hidden />
-                ضمانت خدمت خودرو چاره
+              {/* کارت زمان رسیدن */}
+              <div className="float-soft-delay absolute -bottom-6 left-4 flex items-center gap-3 rounded-2xl bg-navy-900 px-4 py-3 text-white shadow-xl sm:left-8">
+                <span className="flex size-11 items-center justify-center rounded-xl bg-brand-500 text-navy-950">
+                  <Timer className="size-6" aria-hidden />
+                </span>
+                <span>
+                  <span className="block text-sm font-extrabold">میانگین رسیدن: ۳۰ دقیقه</span>
+                  <span className="flex items-center gap-1 text-xs text-navy-200">
+                    <MapPin className="size-3.5" aria-hidden />
+                    نزدیک‌ترین خودروی امداد اعزام می‌شود
+                  </span>
+                </span>
               </div>
             </div>
           </Reveal>
         </div>
 
-        {/* آمار */}
+        {/* نوار آمار */}
         <Reveal delay={150}>
-          <dl className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-white/10 ring-1 ring-white/10 lg:grid-cols-4">
+          <dl className="mx-auto mt-20 grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-3xl bg-navy-100 shadow-xl shadow-navy-900/5 ring-1 ring-navy-900/5 lg:grid-cols-4">
             {STATS.map((stat) => (
-              <div key={stat.label} className="flex flex-col bg-navy-900 px-6 py-6 text-center">
-                <dt className="order-2 mt-1 block text-[13px] font-medium text-silver-400">{stat.label}</dt>
-                <dd className="text-3xl font-black text-brand-400">{stat.value}</dd>
+              <div key={stat.label} className="flex flex-col items-center bg-white px-4 py-6 text-center">
+                <dd className="order-1 text-2xl font-black text-brand-600 sm:text-3xl">{stat.value}</dd>
+                <dt className="order-2 mt-1.5 text-[13px] font-semibold text-silver-600">{stat.label}</dt>
               </div>
             ))}
           </dl>
         </Reveal>
       </div>
-
-      <div className="road-line relative h-1.5 w-full opacity-70" aria-hidden />
     </section>
   );
 }

@@ -1,112 +1,149 @@
 import Image from "next/image";
-import { Clock3, Phone } from "lucide-react";
+import { Clock, Phone } from "lucide-react";
 import { SERVICES, SITE } from "@/lib/data";
+import Reveal from "./Reveal";
 
 const QUICK_LINKS = [
   { href: "#services", label: "خدمات خودرو چاره" },
-  { href: "#steps", label: "نحوه درخواست امداد" },
-  { href: "#fleet", label: "ناوگان امدادی" },
-  { href: "#center", label: "مرکز خودرو چاره" },
-  { href: "#faq", label: "پرسش‌های متداول" },
+  { href: "#why", label: "چرا خودرو چاره" },
+  { href: "#steps", label: "مراحل دریافت خدمت" },
   { href: "#request", label: "ثبت درخواست آنلاین" },
+  { href: "#reviews", label: "ثبت رضایت مشتری" },
+  { href: "#faq", label: "سوالات متداول" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-navy-900">
-      <div className="mx-auto max-w-7xl px-4 pb-24 pt-16 sm:px-6 lg:pb-10">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
-          {/* معرفی */}
-          <div>
-            <Image
-              src="/images/logo.webp"
-              alt="لوگوی خودرو چاره"
-              width={2172}
-              height={724}
-              className="h-16 w-auto"
-            />
-            <p className="mt-5 max-w-sm text-[15px] leading-8 text-silver-400">
-              «خودرو چاره» مرکز امداد و خدمات خودرو در محل است؛ با ناوگان امدادی مجهز و تکنسین‌های
-              مجرب، شبانه‌روزی در کنار رانندگان تهران هستیم تا هیچ خودرویی در راه نماند.
-            </p>
-            <p className="mt-4 inline-flex items-center gap-2 rounded-full bg-navy-800 px-4 py-1.5 text-[13px] font-bold text-brand-300 ring-1 ring-white/10">
-              {SITE.slogan}
-            </p>
-          </div>
-
-          {/* دسترسی سریع */}
-          <nav aria-label="دسترسی سریع">
-            <h3 className="text-base font-extrabold text-white">دسترسی سریع</h3>
-            <ul className="mt-5 space-y-3 text-[15px] font-medium text-silver-400">
-              {QUICK_LINKS.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="transition hover:text-brand-300">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* خدمات */}
-          <nav aria-label="خدمات خودرو چاره">
-            <h3 className="text-base font-extrabold text-white">خدمات ما</h3>
-            <ul className="mt-5 space-y-3 text-[15px] font-medium text-silver-400">
-              {SERVICES.map((service) => (
-                <li key={service.id}>
-                  <a href="#services" className="transition hover:text-brand-300">
-                    {service.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          {/* تماس */}
-          <div>
-            <h3 className="text-base font-extrabold text-white">تماس با خودرو چاره</h3>
-            <div className="mt-5 space-y-3">
+    <>
+      {/* نوار دعوت به تماس */}
+      <section className="bg-brand-500">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-4 py-10 text-center sm:px-6 lg:flex-row lg:text-right">
+          <Reveal>
+            <div>
+              <h2 className="text-2xl font-black text-navy-950 sm:text-3xl">
+                خودروتان همین حالا به کمک نیاز دارد؟
+              </h2>
+              <p className="mt-2 font-bold text-navy-900/80">
+                {SITE.slogan} — امداد شبانه‌روزی خودرو چاره در سراسر تهران.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="flex flex-wrap items-center justify-center gap-3">
               <a
                 href={SITE.phoneShortHref}
-                className="flex items-center justify-between rounded-2xl bg-navy-800 px-5 py-3.5 ring-1 ring-white/10 transition hover:ring-brand-500/50"
+                className="flex items-center gap-2.5 rounded-2xl bg-navy-950 px-6 py-4 font-extrabold text-white shadow-xl transition hover:bg-navy-900"
               >
-                <span className="flex items-center gap-2 text-sm font-bold text-silver-300">
-                  <Phone className="size-4 text-brand-400" aria-hidden />
-                  خط ویژه امداد
-                </span>
-                <span className="text-lg font-black text-white" dir="ltr">
+                <Phone className="size-5 text-brand-400" aria-hidden />
+                <span dir="ltr" className="text-lg">
                   {SITE.phoneShort}
                 </span>
               </a>
               <a
                 href={SITE.phoneMainHref}
-                className="flex items-center justify-between rounded-2xl bg-navy-800 px-5 py-3.5 ring-1 ring-white/10 transition hover:ring-brand-500/50"
+                className="flex items-center gap-2.5 rounded-2xl bg-white/15 px-6 py-4 font-extrabold text-navy-950 ring-2 ring-navy-950/70 transition hover:bg-white"
               >
-                <span className="flex items-center gap-2 text-sm font-bold text-silver-300">
-                  <Phone className="size-4 text-brand-400" aria-hidden />
-                  مرکز خودرو چاره
-                </span>
-                <span className="text-lg font-black text-white" dir="ltr">
+                <Phone className="size-5" aria-hidden />
+                <span dir="ltr" className="text-lg">
                   {SITE.phoneMain}
                 </span>
               </a>
-              <p className="flex items-center gap-2 px-1 pt-1 text-sm font-semibold text-silver-400">
-                <Clock3 className="size-4 shrink-0 text-brand-400" aria-hidden />
-                {SITE.hours}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <footer className="bg-navy-950 pb-28 text-navy-100 lg:pb-0">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <Image
+                src="/images/logo.webp"
+                alt="لوگوی خودرو چاره"
+                width={2172}
+                height={724}
+                className="h-14 w-auto"
+              />
+              <p className="mt-5 text-[15px] font-bold leading-8 text-brand-400">{SITE.slogan}</p>
+              <p className="mt-2 text-[15px] leading-8 text-navy-200">
+                خودرو چاره؛ امداد خودرو و خدمات خودرو در محل در سراسر تهران، با ناوگان مجهز و
+                تکنسین‌های مجرب — شبانه‌روزی و با ضمانت.
               </p>
             </div>
+
+            <nav aria-label="دسترسی سریع">
+              <h3 className="text-lg font-extrabold text-white">دسترسی سریع</h3>
+              <ul className="mt-5 space-y-3 text-[15px] font-semibold text-navy-200">
+                {QUICK_LINKS.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} className="transition hover:text-brand-400">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <nav aria-label="خدمات خودرو چاره">
+              <h3 className="text-lg font-extrabold text-white">خدمات ما</h3>
+              <ul className="mt-5 space-y-3 text-[15px] font-semibold text-navy-200">
+                {SERVICES.map((service) => (
+                  <li key={service.id}>
+                    <a href="#services" className="transition hover:text-brand-400">
+                      {service.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <div>
+              <h3 className="text-lg font-extrabold text-white">تماس با خودرو چاره</h3>
+              <ul className="mt-5 space-y-4 text-[15px] font-semibold">
+                <li>
+                  <a href={SITE.phoneShortHref} className="flex items-center gap-3 transition hover:text-brand-400">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-brand-500 text-navy-950">
+                      <Phone className="size-5" aria-hidden />
+                    </span>
+                    <span>
+                      <span className="block text-[13px] text-navy-300">خط فوری امداد شبانه‌روزی</span>
+                      <span dir="ltr" className="text-lg font-black text-white">
+                        {SITE.phoneShort}
+                      </span>
+                    </span>
+                  </a>
+                </li>
+                <li>
+                  <a href={SITE.phoneMainHref} className="flex items-center gap-3 transition hover:text-brand-400">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-navy-800 text-brand-400 ring-1 ring-white/10">
+                      <Phone className="size-5" aria-hidden />
+                    </span>
+                    <span>
+                      <span className="block text-[13px] text-navy-300">مرکز و نمایندگی مجاز خودرو چاره</span>
+                      <span dir="ltr" className="text-lg font-black text-white">
+                        {SITE.phoneMain}
+                      </span>
+                    </span>
+                  </a>
+                </li>
+                <li className="flex items-center gap-3 text-navy-200">
+                  <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-navy-800 text-brand-400 ring-1 ring-white/10">
+                    <Clock className="size-5" aria-hidden />
+                  </span>
+                  {SITE.hours}
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="road-line mt-14 h-1 w-full opacity-30" aria-hidden />
+
+          <div className="mt-8 flex flex-col items-center justify-between gap-3 text-center text-sm font-medium text-navy-300 sm:flex-row sm:text-right">
+            <p>© ۱۴۰۵ خودرو چاره — تمامی حقوق محفوظ است.</p>
+            <p>امداد خودرو و خدمات خودرو در محل | تهران و حومه</p>
           </div>
         </div>
-
-        <div className="road-line mt-14 h-1 w-full opacity-40" aria-hidden />
-
-        <div className="mt-7 flex flex-col items-center justify-between gap-3 text-[13px] font-medium text-silver-500 sm:flex-row">
-          <p>© ۱۴۰۵ خودرو چاره — تمام حقوق مادی و معنوی این وب‌سایت محفوظ است.</p>
-          <p>
-            امداد خودرو و خدمات خودرو در محل در سراسر تهران — <span className="font-bold text-silver-300">{SITE.name}</span>
-          </p>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }
