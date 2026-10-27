@@ -9,54 +9,59 @@ export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number>(0);
 
   return (
-    <section id="faq" className="scroll-mt-28 bg-white text-navy-900">
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr]">
+    <section id="faq" className="scroll-mt-28 bg-paper py-20 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid items-start gap-10 lg:grid-cols-3">
           <Reveal>
-            <p className="text-sm font-extrabold tracking-wide text-brand-600">پرسش‌های متداول</p>
-            <h2 className="mt-3 text-3xl font-black leading-snug sm:text-4xl">
-              هر سؤالی درباره امداد خودرو دارید، اینجاست
+            <span className="inline-block rounded-full bg-navy-900 px-4 py-1.5 text-[13px] font-extrabold text-white">
+              سوالات متداول
+            </span>
+            <h2 className="mt-4 text-3xl font-black leading-snug text-navy-900">
+              پاسخ پرسش‌های شما درباره خودرو چاره
             </h2>
-            <p className="mt-4 text-base leading-9 text-slate-600">
-              پاسخ بیشتر پرسش‌های مشتریان خودرو چاره را اینجا جمع کرده‌ایم. اگر سؤال دیگری دارید،
-              کارشناسان ما شبانه‌روزی پاسخگوی شما هستند.
+            <p className="mt-4 leading-8 text-silver-600">
+              اگر سؤال دیگری دارید یا همین حالا به امداد نیاز دارید، کارشناسان خودرو چاره
+              شبانه‌روزی پاسخگوی شما هستند.
             </p>
             <a
               href={SITE.phoneShortHref}
-              className="mt-7 inline-flex items-center gap-2.5 rounded-full bg-brand-500 px-6 py-3 text-sm font-extrabold text-navy-950 transition hover:bg-brand-400"
+              className="mt-6 inline-flex items-center gap-2.5 rounded-2xl bg-brand-500 px-5 py-3.5 font-extrabold text-navy-950 shadow-lg shadow-brand-500/30 transition hover:bg-brand-400"
             >
               <Headset className="size-5" aria-hidden />
-              گفت‌وگو با کارشناس خودرو چاره
+              گفت‌وگو با کارشناس
               <span dir="ltr">{SITE.phoneShort}</span>
             </a>
           </Reveal>
 
-          <Reveal delay={120}>
-            <div className="space-y-3.5">
-              {FAQS.map((faq, i) => {
-                const open = openIndex === i;
-                return (
+          <div className="space-y-3.5 lg:col-span-2">
+            {FAQS.map((faq, i) => {
+              const open = openIndex === i;
+              return (
+                <Reveal key={faq.q} delay={i * 70}>
                   <div
-                    key={faq.q}
-                    className={`overflow-hidden rounded-2xl ring-1 transition ${
-                      open ? "bg-navy-900 ring-navy-900" : "bg-navy-50 ring-navy-900/5 hover:ring-brand-500/40"
+                    className={`overflow-hidden rounded-3xl bg-white ring-1 transition ${
+                      open ? "shadow-xl shadow-navy-900/8 ring-brand-500/50" : "ring-navy-900/5"
                     }`}
                   >
                     <button
                       type="button"
                       onClick={() => setOpenIndex(open ? -1 : i)}
                       aria-expanded={open}
-                      className={`flex w-full items-center justify-between gap-4 px-6 py-5 text-right text-[15px] font-extrabold sm:text-base ${
-                        open ? "text-white" : "text-navy-900"
-                      }`}
+                      className="flex w-full items-center justify-between gap-4 px-6 py-5 text-right"
                     >
-                      {faq.q}
-                      <ChevronDown
-                        className={`size-5 shrink-0 transition-transform duration-300 ${
-                          open ? "rotate-180 text-brand-400" : "text-brand-600"
+                      <span className="text-[15px] font-extrabold text-navy-900 sm:text-base">
+                        {faq.q}
+                      </span>
+                      <span
+                        className={`flex size-9 shrink-0 items-center justify-center rounded-full transition ${
+                          open ? "bg-brand-500 text-navy-950" : "bg-navy-50 text-navy-800"
                         }`}
-                        aria-hidden
-                      />
+                      >
+                        <ChevronDown
+                          className={`size-5 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+                          aria-hidden
+                        />
+                      </span>
                     </button>
                     <div
                       className={`grid transition-all duration-300 ease-out ${
@@ -64,20 +69,14 @@ export default function Faq() {
                       }`}
                     >
                       <div className="overflow-hidden">
-                        <p
-                          className={`px-6 pb-6 text-[15px] leading-8 ${
-                            open ? "text-silver-300" : "text-slate-600"
-                          }`}
-                        >
-                          {faq.a}
-                        </p>
+                        <p className="px-6 pb-6 text-[15px] leading-8 text-silver-600">{faq.a}</p>
                       </div>
                     </div>
                   </div>
-                );
-              })}
-            </div>
-          </Reveal>
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
