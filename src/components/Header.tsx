@@ -7,6 +7,7 @@ import { SITE } from "@/lib/data";
 
 const NAV = [
   { href: "#services", label: "خدمات ما" },
+  { href: "#pricing", label: "تعرفه خدمات" },
   { href: "#why", label: "چرا خودرو چاره" },
   { href: "#steps", label: "مراحل دریافت خدمت" },
   { href: "#request", label: "ثبت درخواست" },

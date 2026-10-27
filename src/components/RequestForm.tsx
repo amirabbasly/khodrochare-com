@@ -129,7 +129,10 @@ export default function RequestForm() {
                   className="size-16 rounded-2xl ring-1 ring-white/15"
                 />
                 <h3 className="mt-5 text-xl font-black">خودرو چاره پاسخگوی شماست</h3>
-                <p className="mt-2 text-[15px] leading-8 text-navy-200">{SITE.slogan}.</p>
+                <p className="mt-2 text-[15px] leading-8 text-navy-200">
+                  امداد خودرو و خدمات خودرو در محل در تهران؛ مشاوره و اعلام هزینه پیش از اعزام رایگان
+                  است.
+                </p>
 
                 <div className="mt-7 space-y-3">
                   <a

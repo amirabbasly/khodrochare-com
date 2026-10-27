@@ -1,4 +1,4 @@
-import { MapPin, ShieldCheck, Timer, Wallet, Wrench } from "lucide-react";
+import { Check, MapPin, ShieldCheck, Timer, Wallet, Wrench, X } from "lucide-react";
 import { COVERAGE } from "@/lib/data";
 import Reveal from "./Reveal";
 
@@ -25,6 +25,34 @@ const FEATURES = [
   },
 ];
 
+const COMPARE: { feature: string; us: string; others: string }[] = [
+  {
+    feature: "ناوگان و تکنسین",
+    us: "ناوگان اختصاصی خودرو چاره با خودروی سازمانی، لباس فرم و کارت شناسایی",
+    others: "افراد متفرقه و ناشناس، بدون هویت سازمانی مشخص",
+  },
+  {
+    feature: "اعلام قیمت",
+    us: "پیش از اعزام و طبق نرخ مصوب اتحادیه؛ در پایان فاکتور رسمی",
+    others: "اغلب پس از انجام کار، سلیقه‌ای و بدون فاکتور",
+  },
+  {
+    feature: "ضمانت خدمت و قطعه",
+    us: "ضمانت اجرت خدمت و گارانتی رسمی قطعه‌هایی مثل باتری",
+    others: "معمولاً بدون هیچ ضمانت کتبی",
+  },
+  {
+    feature: "پاسخگویی و اعزام",
+    us: "مستقیم توسط خود مجموعه، شبانه‌روزی و بدون واسطه و کمیسیون",
+    others: "ارجاع سفارش به افراد مختلف و ناهماهنگی در زمان رسیدن",
+  },
+  {
+    feature: "پیگیری بعد از خدمت",
+    us: "مرکز و نمایندگی مجاز خودرو چاره برای پیگیری و تعمیر تخصصی",
+    others: "بدون مرکز ثابت؛ بعد از خدمت پاسخگویی وجود ندارد",
+  },
+];
+
 export default function WhyUs() {
   return (
     <section id="why" className="scroll-mt-28 bg-paper py-20 lg:py-24">
@@ -37,8 +65,8 @@ export default function WhyUs() {
             چون وقت و آرامش شما برای ما مهم است
           </h2>
           <p className="mt-4 leading-8 text-silver-600">
-            خودرو چاره فقط یک امداد خودرو نیست؛ یک تیم آماده‌باش است که روز و شب کنار راننده‌های
-            تهران می‌ایستد تا هیچ‌کس در راه نماند.
+            خودرو چاره واسطه نیست؛ ناوگان امدادی، تکنسین‌ها و مرکز خدمات متعلق به خود مجموعه است و
+            شبانه‌روز در سراسر تهران پاسخگوی راننده‌هاست.
           </p>
         </Reveal>
 
@@ -56,6 +84,53 @@ export default function WhyUs() {
           ))}
         </div>
 
+        {/* مقایسه خودرو چاره با امدادهای متفرقه و واسطه‌ها */}
+        <Reveal delay={100}>
+          <div className="mt-14">
+            <h3 className="text-center text-2xl font-black text-navy-900">
+              تفاوت خودرو چاره با امدادهای متفرقه و واسطه‌ها
+            </h3>
+            <div className="mx-auto mt-8 max-w-4xl overflow-x-auto rounded-3xl bg-white ring-1 ring-navy-900/10">
+              <table className="w-full min-w-[560px] text-right text-[15px]">
+                <thead>
+                  <tr className="bg-navy-900 text-white">
+                    <th scope="col" className="px-5 py-4 font-extrabold sm:px-7">
+                      ویژگی
+                    </th>
+                    <th scope="col" className="px-5 py-4 font-extrabold text-brand-400 sm:px-7">
+                      خودرو چاره
+                    </th>
+                    <th scope="col" className="px-5 py-4 font-extrabold sm:px-7">
+                      امدادهای متفرقه و واسطه‌ها
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARE.map((row, i) => (
+                    <tr key={row.feature} className={i % 2 === 0 ? "bg-paper" : "bg-white"}>
+                      <th scope="row" className="px-5 py-4 font-extrabold text-navy-900 sm:px-7">
+                        {row.feature}
+                      </th>
+                      <td className="px-5 py-4 font-semibold leading-7 text-navy-800 sm:px-7">
+                        <span className="flex items-start gap-2">
+                          <Check className="mt-1 size-5 shrink-0 text-brand-600" aria-hidden />
+                          {row.us}
+                        </span>
+                      </td>
+                      <td className="px-5 py-4 font-medium leading-7 text-silver-600 sm:px-7">
+                        <span className="flex items-start gap-2">
+                          <X className="mt-1 size-5 shrink-0 text-silver-400" aria-hidden />
+                          {row.others}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </Reveal>
+
         <Reveal delay={120}>
           <div className="mt-12 rounded-[2rem] bg-navy-900 px-6 py-8 sm:px-10">
             <div className="flex flex-wrap items-center gap-3">
@@ -65,7 +140,7 @@ export default function WhyUs() {
               <div>
                 <h3 className="text-lg font-extrabold text-white">مناطق تحت پوشش خودرو چاره</h3>
                 <p className="text-sm text-navy-200">
-                  امداد شبانه‌روزی در سراسر تهران و حومه — هر کجا باشید، خودرو چاره می‌رسد.
+                  امداد شبانه‌روزی در سراسر تهران و حومه؛ نزدیک‌ترین خودروی امداد اعزام می‌شود.
                 </p>
               </div>
             </div>

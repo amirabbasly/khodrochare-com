@@ -2,42 +2,72 @@ import type { Metadata } from "next";
 import "@fontsource-variable/vazirmatn";
 import "./globals.css";
 
+const TITLE = "خودرو چاره | امداد خودرو تهران شبانه‌روزی — تعمیر، پنچرگیری و باتری در محل";
+const DESCRIPTION =
+  "امداد خودرو شبانه‌روزی خودرو چاره در تهران: مکانیک سیار و تعمیر خودرو در محل، پنچرگیری سیار، باتری‌به‌باتری و تعویض باتری در محل، برق خودرو، خودروبر و یدک‌کش با نرخ مصوب اتحادیه و ضمانت خدمت. تماس فوری: ۰۲۱۹۱۸۵۵";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://khodrochare.com"),
-  title: "خودرو چاره | امداد خودرو و خدمات خودرو در محل — شبانه‌روزی",
-  description:
-    "خودرو چاره؛ تعمیر خودرو در محل، پنچرگیری در محل، خودروبر و یدک‌کش، تعویض باتری و برق خودرو در محل. امداد خودرو شبانه‌روزی تهران با یک تماس: ۰۲۱۹۱۸۵۵",
+  title: TITLE,
+  description: DESCRIPTION,
   keywords: [
     "خودرو چاره",
-    "امداد خودرو",
-    "تعمیر خودرو در محل",
+    "امداد خودرو تهران",
+    "امداد خودرو شبانه روزی",
+    "شماره امداد خودرو تهران",
+    "مکانیک سیار تهران",
+    "تعمیر خودرو در محل تهران",
+    "پنچرگیری سیار تهران",
     "پنچرگیری در محل",
-    "خودروبر",
-    "یدک‌کش",
+    "یدک کش شبانه روزی تهران",
+    "خودروبر تهران",
+    "باتری به باتری تهران",
+    "تعویض باتری در محل",
     "باتری در محل",
     "برق خودرو در محل",
-    "خدمات خودرو در محل",
+    "خدمات خودرو در محل تهران",
+    "سرویس دوره ای خودرو در محل",
   ],
   authors: [{ name: "خودرو چاره" }],
   creator: "خودرو چاره",
   publisher: "خودرو چاره",
+  category: "Automotive",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "fa_IR",
+    url: "/",
     siteName: "خودرو چاره",
-    title: "خودرو چاره | یک تماس، یک چاره",
-    description:
-      "امداد خودرو و خدمات خودرو در محل به‌صورت شبانه‌روزی؛ تعمیر در محل، پنچرگیری، خودروبر، باتری و برق خودرو.",
+    title: TITLE,
+    description: DESCRIPTION,
     images: [
       {
         url: "/images/fleet.webp",
         width: 1600,
-        height: 1060,
-        alt: "ناوگان امدادی خودرو چاره",
+        height: 1061,
+        alt: "ناوگان امداد خودرو چاره — امداد خودرو شبانه‌روزی تهران",
       },
     ],
   },
-  robots: { index: true, follow: true },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/images/fleet.webp"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

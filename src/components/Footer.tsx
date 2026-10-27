@@ -5,6 +5,7 @@ import Reveal from "./Reveal";
 
 const QUICK_LINKS = [
   { href: "#services", label: "خدمات خودرو چاره" },
+  { href: "#pricing", label: "تعرفه خدمات" },
   { href: "#why", label: "چرا خودرو چاره" },
   { href: "#steps", label: "مراحل دریافت خدمت" },
   { href: "#request", label: "ثبت درخواست آنلاین" },
@@ -24,7 +25,7 @@ export default function Footer() {
                 خودروتان همین حالا به کمک نیاز دارد؟
               </h2>
               <p className="mt-2 font-bold text-navy-900/80">
-                {SITE.slogan} — امداد شبانه‌روزی خودرو چاره در سراسر تهران.
+                امداد خودرو شبانه‌روزی خودرو چاره در سراسر تهران؛ مشاوره و اعلام هزینه رایگان است.
               </p>
             </div>
           </Reveal>
@@ -64,7 +65,9 @@ export default function Footer() {
                 height={724}
                 className="h-14 w-auto"
               />
-              <p className="mt-5 text-[15px] font-bold leading-8 text-brand-400">{SITE.slogan}</p>
+              <p className="mt-5 text-[15px] font-bold leading-8 text-brand-400">
+                امداد خودرو تهران | مکانیک سیار و خدمات خودرو در محل
+              </p>
               <p className="mt-2 text-[15px] leading-8 text-navy-200">
                 خودرو چاره؛ امداد خودرو و خدمات خودرو در محل در سراسر تهران، با ناوگان مجهز و
                 تکنسین‌های مجرب — شبانه‌روزی و با ضمانت.

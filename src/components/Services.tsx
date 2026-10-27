@@ -54,7 +54,10 @@ export default function Services() {
             const Icon = ICONS[service.id] ?? Wrench;
             return (
               <Reveal key={service.id} delay={(i % 3) * 100}>
-                <article className="group flex h-full flex-col rounded-3xl bg-paper p-6 ring-1 ring-navy-900/5 transition duration-300 hover:-translate-y-1.5 hover:bg-white hover:shadow-2xl hover:shadow-navy-900/10 hover:ring-brand-500/40">
+                <article
+                  id={`service-${service.id}`}
+                  className="group flex h-full scroll-mt-32 flex-col rounded-3xl bg-paper p-6 ring-1 ring-navy-900/5 transition duration-300 hover:-translate-y-1.5 hover:bg-white hover:shadow-2xl hover:shadow-navy-900/10 hover:ring-brand-500/40"
+                >
                   <div className="flex items-start justify-between">
                     <span className="flex size-14 items-center justify-center rounded-2xl bg-navy-900 text-brand-400 transition group-hover:bg-brand-500 group-hover:text-navy-950">
                       <Icon className="size-7" aria-hidden />
