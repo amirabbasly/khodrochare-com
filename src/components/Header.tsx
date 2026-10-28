@@ -5,15 +5,16 @@ import Image from "next/image";
 import { Clock, Menu, Phone, X } from "lucide-react";
 import { SITE } from "@/lib/data";
 
+// «short» در دسکتاپ‌های کوچک (LG) نمایش داده می‌شود تا منو جمع‌وجور و بدون درهم‌رفتگی جا شود
 const NAV = [
-  { href: "#services", label: "خدمات ما" },
-  { href: "#battery", label: "خرید باتری" },
-  { href: "#pricing", label: "تعرفه خدمات" },
-  { href: "#why", label: "چرا خودرو چاره" },
-  { href: "#steps", label: "مراحل دریافت خدمت" },
-  { href: "#request", label: "ثبت درخواست" },
-  { href: "#reviews", label: "رضایت مشتریان" },
-  { href: "#faq", label: "سوالات متداول" },
+  { href: "#services", label: "خدمات ما", short: "خدمات" },
+  { href: "#battery", label: "خرید باتری", short: "خرید باتری" },
+  { href: "#pricing", label: "تعرفه خدمات", short: "تعرفه" },
+  { href: "#why", label: "چرا خودرو چاره", short: "مزایا" },
+  { href: "#steps", label: "مراحل دریافت خدمت", short: "مراحل خدمت" },
+  { href: "#request", label: "ثبت درخواست", short: "ثبت درخواست" },
+  { href: "#reviews", label: "رضایت مشتریان", short: "نظرات" },
+  { href: "#faq", label: "سوالات متداول", short: "سوالات" },
 ];
 
 export default function Header() {
@@ -35,7 +36,7 @@ export default function Header() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
-    const mq = window.matchMedia("(min-width: 1280px)");
+    const mq = window.matchMedia("(min-width: 1024px)");
     const onMq = (e: MediaQueryListEvent) => {
       if (e.matches) setOpen(false);
     };
@@ -52,7 +53,7 @@ export default function Header() {
     <>
       {/* نوار تماس بالای سایت */}
       <div className="bg-brand-500 text-navy-950">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-1 px-4 py-2 text-[13px] font-bold sm:justify-between sm:px-6">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-1 px-4 py-2 text-[12px] font-bold min-[480px]:text-[13px] sm:justify-between sm:px-6 lg:px-5 lg:text-[12px] xl:px-6 xl:text-[13px]">
           <p className="flex items-center gap-1.5">
             <Clock className="size-4 shrink-0" aria-hidden />
             امداد خودرو چاره — شبانه‌روزی در سراسر تهران
@@ -60,14 +61,14 @@ export default function Header() {
           <div className="flex items-center gap-4">
             <a
               href={SITE.phoneShortHref}
-              className="flex items-center gap-1.5 transition hover:text-white"
+              className="flex items-center gap-1.5 whitespace-nowrap transition hover:text-white"
             >
               <Phone className="size-4 shrink-0" aria-hidden />
               <span dir="ltr">{SITE.phoneShort}</span>
             </a>
             <a
               href={SITE.phoneMainHref}
-              className="hidden items-center gap-1.5 transition hover:text-white sm:flex"
+              className="hidden items-center gap-1.5 whitespace-nowrap transition hover:text-white sm:flex"
             >
               <Phone className="size-4 shrink-0" aria-hidden />
               <span dir="ltr">{SITE.phoneMain}</span>
@@ -82,7 +83,7 @@ export default function Header() {
           scrolled ? "shadow-[0_10px_30px_rgba(4,11,22,0.35)]" : ""
         }`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6 lg:gap-4 lg:px-5 xl:px-6">
           <a href="#top" className="flex shrink-0 items-center gap-3" aria-label="خودرو چاره — بازگشت به بالای صفحه">
             <Image
               src="/images/logo.webp"
@@ -90,25 +91,35 @@ export default function Header() {
               width={2172}
               height={724}
               priority
-              className="h-10 w-auto sm:h-13"
+              className="h-10 w-auto sm:h-12 lg:h-11 xl:h-12"
             />
           </a>
 
-          <nav className="hidden items-center gap-5 text-[15px] font-semibold text-navy-100 xl:flex" aria-label="ناوبری اصلی">
+          {/* منوی دسکتاپ: در لپ‌تاپ کوچک فونت ریزتر + برچسب کوتاه؛ در دسکتاپ بزرگ نسخه کامل */}
+          <nav
+            className="hidden min-w-0 flex-1 items-center justify-center gap-2.5 text-[12.5px] font-semibold text-navy-100 lg:flex xl:gap-3.5 xl:text-[13px]"
+            aria-label="ناوبری اصلی"
+          >
             {NAV.map((item) => (
-              <a key={item.href} href={item.href} className="transition hover:text-brand-400">
-                {item.label}
+              <a
+                key={item.href}
+                href={item.href}
+                aria-label={item.label}
+                className="whitespace-nowrap transition hover:text-brand-400"
+              >
+                <span className="xl:hidden">{item.short}</span>
+                <span className="hidden xl:inline">{item.label}</span>
               </a>
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <a
               href={SITE.phoneShortHref}
-              className="ring-pulse hidden items-center gap-2 rounded-full bg-brand-500 px-4 py-2.5 text-sm font-extrabold text-navy-950 transition hover:bg-brand-400 md:flex"
+              className="ring-pulse hidden items-center gap-1.5 whitespace-nowrap rounded-full bg-brand-500 px-3 py-2 text-[13px] font-extrabold text-navy-950 transition hover:bg-brand-400 md:flex xl:gap-2 xl:px-4 xl:py-2.5 xl:text-sm"
             >
-              <Phone className="size-4.5 shrink-0" aria-hidden />
-              تماس فوری:
+              <Phone className="size-4 shrink-0 xl:size-4.5" aria-hidden />
+              <span className="hidden xl:inline">تماس فوری:</span>
               <span dir="ltr">{SITE.phoneShort}</span>
             </a>
             <button
@@ -117,7 +128,7 @@ export default function Header() {
               aria-expanded={open}
               aria-controls="mobile-drawer"
               aria-label="باز کردن منو"
-              className="flex size-11 shrink-0 items-center justify-center rounded-full border border-white/15 text-white transition hover:border-brand-500 hover:text-brand-400 xl:hidden"
+              className="flex size-11 shrink-0 items-center justify-center rounded-full border border-white/15 text-white transition hover:border-brand-500 hover:text-brand-400 lg:hidden"
             >
               <Menu className="size-5" aria-hidden />
             </button>
@@ -125,10 +136,10 @@ export default function Header() {
         </div>
       </header>
 
-      {/* منوی کشویی موبایل — بازشونده از سمت راست به چپ */}
+      {/* منوی کشویی موبایل و تبلت — بازشونده از سمت راست به چپ */}
       <div
         style={{ visibility: open ? "visible" : "hidden", transitionDelay: open ? "0ms" : "300ms" }}
-        className={`fixed inset-0 z-[70] transition-[visibility] xl:hidden ${open ? "" : "pointer-events-none"}`}
+        className={`fixed inset-0 z-[70] transition-[visibility] lg:hidden ${open ? "" : "pointer-events-none"}`}
         aria-hidden={!open}
       >
         {/* پس‌زمینه تیره */}
