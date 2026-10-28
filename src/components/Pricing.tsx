@@ -1,14 +1,15 @@
 "use client";
 
-import { BadgeCheck, Phone, ShieldCheck, Wallet } from "lucide-react";
+import Image from "next/image";
+import { BadgeCheck, Phone } from "lucide-react";
 import { PRICING, SITE } from "@/lib/data";
 import { selectService } from "./Services";
 import Reveal from "./Reveal";
 
 const NOTES = [
-  { icon: Wallet, text: "محاسبه قیمت بر اساس نرخ مصوب اتحادیه" },
-  { icon: Phone, text: "اعلام هزینه پیش از اعزام؛ مشاوره تلفنی رایگان" },
-  { icon: ShieldCheck, text: "بدون هزینه پنهان؛ فاکتور رسمی و ضمانت خدمت" },
+  { icon: "/images/icons/wallet.jpg", text: "محاسبه قیمت بر اساس نرخ مصوب اتحادیه" },
+  { icon: "/images/icons/technician.jpg", text: "اعلام هزینه پیش از اعزام؛ مشاوره تلفنی رایگان" },
+  { icon: "/images/icons/shield.jpg", text: "بدون هزینه پنهان؛ فاکتور رسمی و ضمانت خدمت" },
 ];
 
 export default function Pricing() {
@@ -56,8 +57,14 @@ export default function Pricing() {
         <Reveal delay={180}>
           <ul className="mx-auto mt-8 flex max-w-4xl flex-wrap items-center justify-center gap-x-7 gap-y-3">
             {NOTES.map((note) => (
-              <li key={note.text} className="flex items-center gap-2 text-sm font-bold text-navy-800">
-                <note.icon className="size-5 shrink-0 text-brand-600" aria-hidden />
+              <li key={note.text} className="flex items-center gap-2.5 text-sm font-bold text-navy-800">
+                <Image
+                  src={note.icon}
+                  alt=""
+                  width={512}
+                  height={512}
+                  className="size-8 shrink-0 rounded-lg object-cover shadow-md shadow-navy-900/15 ring-1 ring-navy-900/10"
+                />
                 {note.text}
               </li>
             ))}

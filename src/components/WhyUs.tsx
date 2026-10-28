@@ -1,25 +1,26 @@
-import { Check, MapPin, ShieldCheck, Timer, Wallet, Wrench, X } from "lucide-react";
+import Image from "next/image";
+import { Check, X } from "lucide-react";
 import { COVERAGE } from "@/lib/data";
 import Reveal from "./Reveal";
 
 const FEATURES = [
   {
-    icon: Timer,
+    icon: "/images/icons/timer.jpg",
     title: "رسیدن سریع، حدود ۳۰ دقیقه",
     text: "خودروهای امداد خودرو چاره در نقاط مختلف تهران مستقرند؛ به‌محض ثبت درخواست، نزدیک‌ترین خودرو به سمت شما حرکت می‌کند.",
   },
   {
-    icon: Wrench,
+    icon: "/images/icons/technician.jpg",
     title: "تکنسین‌های مجرب و مجهز",
     text: "تیم فنی خودرو چاره برای خودروهای ایرانی و خارجی آموزش دیده و با ابزار کامل و دستگاه دیاگ به محل می‌رسد.",
   },
   {
-    icon: Wallet,
+    icon: "/images/icons/wallet.jpg",
     title: "قیمت شفاف، بدون هزینه پنهان",
     text: "هزینه خدمت و قطعه پیش از شروع کار اعلام و با تأیید شما انجام می‌شود؛ در پایان هم فاکتور رسمی دریافت می‌کنید.",
   },
   {
-    icon: ShieldCheck,
+    icon: "/images/icons/shield.jpg",
     title: "ضمانت خدمات و قطعه",
     text: "همه خدمات خودرو چاره ضمانت اجرت دارد و قطعه‌هایی مثل باتری با گارانتی رسمی شرکت سازنده عرضه می‌شوند.",
   },
@@ -74,9 +75,13 @@ export default function WhyUs() {
           {FEATURES.map((feature, i) => (
             <Reveal key={feature.title} delay={i * 100}>
               <div className="h-full rounded-3xl bg-white p-6 ring-1 ring-navy-900/5 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-navy-900/8">
-                <span className="flex size-13 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 ring-1 ring-brand-100">
-                  <feature.icon className="size-6.5" aria-hidden />
-                </span>
+                <Image
+                  src={feature.icon}
+                  alt={`آیکون ${feature.title}`}
+                  width={512}
+                  height={512}
+                  className="size-14 shrink-0 rounded-2xl object-cover shadow-lg shadow-navy-900/15 ring-1 ring-navy-900/10"
+                />
                 <h3 className="mt-4 text-lg font-extrabold text-navy-900">{feature.title}</h3>
                 <p className="mt-2 text-[15px] leading-8 text-silver-600">{feature.text}</p>
               </div>
@@ -134,9 +139,13 @@ export default function WhyUs() {
         <Reveal delay={120}>
           <div className="mt-12 rounded-[2rem] bg-navy-900 px-6 py-8 sm:px-10">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="flex size-11 items-center justify-center rounded-xl bg-brand-500 text-navy-950">
-                <MapPin className="size-6" aria-hidden />
-              </span>
+              <Image
+                src="/images/icons/tow.jpg"
+                alt=""
+                width={512}
+                height={512}
+                className="size-11 shrink-0 rounded-xl object-cover ring-1 ring-white/20"
+              />
               <div>
                 <h3 className="text-lg font-extrabold text-white">مناطق تحت پوشش خودرو چاره</h3>
                 <p className="text-sm text-navy-200">

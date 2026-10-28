@@ -6,16 +6,15 @@ import {
   Car,
   CircleCheckBig,
   ClipboardList,
-  Clock,
   MapPin,
   Phone,
   RotateCcw,
   Send,
-  ShieldCheck,
   User,
   Wrench,
 } from "lucide-react";
 import { SERVICES, SITE, isValidMobile } from "@/lib/data";
+import { trackEvent } from "@/lib/track";
 import Reveal from "./Reveal";
 
 const STORAGE_KEY = "khodrochare-requests";
@@ -89,6 +88,7 @@ export default function RequestForm() {
     } catch {
       // ذخیره‌سازی محلی ممکن است در برخی مرورگرها غیرفعال باشد
     }
+    trackEvent("service_request", { service: form.service });
     setTrackingCode(code);
   };
 
@@ -162,16 +162,34 @@ export default function RequestForm() {
                 </div>
 
                 <ul className="mt-7 space-y-3.5 text-[15px] font-semibold text-navy-100">
-                  <li className="flex items-center gap-2.5">
-                    <Clock className="size-5 shrink-0 text-brand-400" aria-hidden />
+                  <li className="flex items-center gap-3">
+                    <Image
+                      src="/images/icons/timer.jpg"
+                      alt=""
+                      width={512}
+                      height={512}
+                      className="size-9 shrink-0 rounded-lg object-cover ring-1 ring-white/20"
+                    />
                     {SITE.hours}
                   </li>
-                  <li className="flex items-center gap-2.5">
-                    <MapPin className="size-5 shrink-0 text-brand-400" aria-hidden />
+                  <li className="flex items-center gap-3">
+                    <Image
+                      src="/images/icons/tow.jpg"
+                      alt=""
+                      width={512}
+                      height={512}
+                      className="size-9 shrink-0 rounded-lg object-cover ring-1 ring-white/20"
+                    />
                     اعزام امداد به سراسر تهران و حومه
                   </li>
-                  <li className="flex items-center gap-2.5">
-                    <ShieldCheck className="size-5 shrink-0 text-brand-400" aria-hidden />
+                  <li className="flex items-center gap-3">
+                    <Image
+                      src="/images/icons/shield.jpg"
+                      alt=""
+                      width={512}
+                      height={512}
+                      className="size-9 shrink-0 rounded-lg object-cover ring-1 ring-white/20"
+                    />
                     اعلام هزینه قبل از اعزام + ضمانت خدمت
                   </li>
                 </ul>

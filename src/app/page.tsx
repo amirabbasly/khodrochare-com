@@ -10,6 +10,7 @@ import SeoAbout from "@/components/SeoAbout";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import MobileCallBar from "@/components/MobileCallBar";
+import CallTracker from "@/components/CallTracker";
 import { COVERAGE, FAQS, RATING_BASE, SERVICES, SITE } from "@/lib/data";
 
 const totalRatings = Object.values(RATING_BASE).reduce((a, b) => a + b, 0);
@@ -31,11 +32,11 @@ const jsonLd = {
         "خودرو چاره؛ امداد خودرو شبانه‌روزی و خدمات خودرو در محل در تهران: مکانیک سیار و تعمیر خودرو در محل، پنچرگیری سیار، باتری‌به‌باتری و تعویض باتری در محل، برق خودرو، خودروبر و یدک‌کش با نرخ مصوب اتحادیه و ضمانت خدمت.",
       image: "https://khodrochare.com/images/fleet.webp",
       logo: "https://khodrochare.com/images/logo.webp",
-      telephone: "+98-21-91855",
+      telephone: "+98-912-302-2064",
       contactPoint: [
         {
           "@type": "ContactPoint",
-          telephone: "+98-21-91855",
+          telephone: "+98-912-302-2064",
           contactType: "emergency",
           areaServed: "IR",
           availableLanguage: "fa",
@@ -114,6 +115,7 @@ export default function Home() {
       </main>
       <Footer />
       <MobileCallBar />
+      <CallTracker />
     </>
   );
 }

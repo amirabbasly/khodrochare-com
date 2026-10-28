@@ -13,6 +13,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { RATING_BASE, REVIEWS, SERVICES, isValidMobile, type Review } from "@/lib/data";
+import { trackEvent } from "@/lib/track";
 import Reveal from "./Reveal";
 
 const STORAGE_KEY = "khodrochare-reviews";
@@ -143,6 +144,7 @@ export default function Reviews() {
       // نادیده گرفته می‌شود
     }
 
+    trackEvent("review_submit", { rating, service });
     setSubmitted(true);
   };
 

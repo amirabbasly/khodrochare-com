@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { BadgeCheck, ClipboardList, MapPin, Phone, ShieldCheck, Star, Timer } from "lucide-react";
+import { ClipboardList, MapPin, Phone, Star } from "lucide-react";
 import { SITE, STATS } from "@/lib/data";
 import Reveal from "./Reveal";
 
 const TRUST = [
-  { icon: ShieldCheck, text: "ضمانت خدمات و قطعه" },
-  { icon: Timer, text: "رسیدن حدود ۳۰ دقیقه‌ای" },
-  { icon: BadgeCheck, text: "فاکتور رسمی و قیمت شفاف" },
+  { icon: "/images/icons/shield.jpg", text: "ضمانت خدمات و قطعه" },
+  { icon: "/images/icons/timer.jpg", text: "رسیدن حدود ۳۰ دقیقه‌ای" },
+  { icon: "/images/icons/wallet.jpg", text: "فاکتور رسمی و قیمت شفاف" },
 ];
 
 export default function Hero() {
@@ -68,8 +68,14 @@ export default function Hero() {
             <Reveal delay={320}>
               <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3">
                 {TRUST.map((item) => (
-                  <li key={item.text} className="flex items-center gap-2 text-sm font-bold text-navy-800">
-                    <item.icon className="size-5 text-brand-600" aria-hidden />
+                  <li key={item.text} className="flex items-center gap-2.5 text-sm font-bold text-navy-800">
+                    <Image
+                      src={item.icon}
+                      alt=""
+                      width={512}
+                      height={512}
+                      className="size-9 shrink-0 rounded-lg object-cover shadow-md shadow-navy-900/15 ring-1 ring-navy-900/10"
+                    />
                     {item.text}
                   </li>
                 ))}
@@ -109,9 +115,13 @@ export default function Hero() {
 
               {/* کارت زمان رسیدن */}
               <div className="float-soft-delay absolute -bottom-6 left-4 flex items-center gap-3 rounded-2xl bg-navy-900 px-4 py-3 text-white shadow-xl sm:left-8">
-                <span className="flex size-11 items-center justify-center rounded-xl bg-brand-500 text-navy-950">
-                  <Timer className="size-6" aria-hidden />
-                </span>
+                <Image
+                  src="/images/icons/timer.jpg"
+                  alt=""
+                  width={512}
+                  height={512}
+                  className="size-11 shrink-0 rounded-xl object-cover ring-1 ring-white/20"
+                />
                 <span>
                   <span className="block text-sm font-extrabold">میانگین رسیدن: ۳۰ دقیقه</span>
                   <span className="flex items-center gap-1 text-xs text-navy-200">

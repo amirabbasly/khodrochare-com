@@ -1,33 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import {
-  ArrowLeft,
-  BatteryCharging,
-  Building2,
-  CarFront,
-  Check,
-  ClipboardCheck,
-  LifeBuoy,
-  Phone,
-  Truck,
-  Wrench,
-  Zap,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowLeft, Check, Phone } from "lucide-react";
 import { EXTRA_SERVICES, SERVICES, SITE } from "@/lib/data";
+import { trackEvent } from "@/lib/track";
 import Reveal from "./Reveal";
 
-const ICONS: Record<string, LucideIcon> = {
-  repair: Wrench,
-  tire: LifeBuoy,
-  tow: Truck,
-  battery: BatteryCharging,
-  electric: Zap,
-  periodic: ClipboardCheck,
+/** آیکون‌های تصویری اختصاصی هر خدمت */
+const ICON_IMAGES: Record<string, string> = {
+  repair: "/images/icons/repair.jpg",
+  tire: "/images/icons/tire.jpg",
+  tow: "/images/icons/tow.jpg",
+  battery: "/images/icons/battery.jpg",
+  electric: "/images/icons/electric.jpg",
+  periodic: "/images/icons/periodic.jpg",
 };
 
 export function selectService(id: string) {
+  trackEvent("service_select", { service: id });
   window.dispatchEvent(new CustomEvent("khodrochare:select-service", { detail: id }));
   document.getElementById("request")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
@@ -51,7 +41,7 @@ export default function Services() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service, i) => {
-            const Icon = ICONS[service.id] ?? Wrench;
+            const iconSrc = ICON_IMAGES[service.id] ?? "/images/icons/repair.jpg";
             return (
               <Reveal key={service.id} delay={(i % 3) * 100}>
                 <article
@@ -59,9 +49,13 @@ export default function Services() {
                   className="group flex h-full scroll-mt-32 flex-col rounded-3xl bg-paper p-6 ring-1 ring-navy-900/5 transition duration-300 hover:-translate-y-1.5 hover:bg-white hover:shadow-2xl hover:shadow-navy-900/10 hover:ring-brand-500/40"
                 >
                   <div className="flex items-start justify-between">
-                    <span className="flex size-14 items-center justify-center rounded-2xl bg-navy-900 text-brand-400 transition group-hover:bg-brand-500 group-hover:text-navy-950">
-                      <Icon className="size-7" aria-hidden />
-                    </span>
+                    <Image
+                      src={iconSrc}
+                      alt={`آیکون ${service.title}`}
+                      width={512}
+                      height={512}
+                      className="size-16 shrink-0 rounded-2xl object-cover shadow-lg shadow-navy-900/20 ring-1 ring-navy-900/10 transition duration-300 group-hover:scale-105"
+                    />
                     <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-extrabold text-brand-600 ring-1 ring-brand-100">
                       {service.eta}
                     </span>
@@ -110,26 +104,30 @@ export default function Services() {
           </div>
         </Reveal>
 
-        {/* عکس‌های ناوگان و مرکز خودرو چاره */}
+        {/* عکس‌های مرکز تخصصی و نمایندگی مجاز خودرو چاره */}
         <div className="mt-14 grid gap-6 lg:grid-cols-2">
           <Reveal>
             <figure className="group relative overflow-hidden rounded-[2rem] shadow-xl shadow-navy-900/10">
               <Image
-                src="/images/fleet.webp"
-                alt="ناوگان خودروهای امدادی خودرو چاره آماده اعزام"
-                width={1600}
-                height={1061}
+                src="/images/workshop.webp"
+                alt="کارگاه مجهز مرکز تخصصی تعمیرات خودرو چاره؛ خودرو روی جک دوستون در حال سرویس"
+                width={739}
+                height={415}
                 className="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-105"
               />
               <figcaption className="absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-between gap-3 bg-navy-950/85 px-6 py-4 text-white backdrop-blur-sm">
                 <span className="flex items-center gap-3">
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-500 text-navy-950">
-                    <CarFront className="size-6" aria-hidden />
-                  </span>
+                  <Image
+                    src="/images/icons/repair.jpg"
+                    alt=""
+                    width={512}
+                    height={512}
+                    className="size-11 shrink-0 rounded-xl object-cover ring-1 ring-white/20"
+                  />
                   <span>
-                    <span className="block font-extrabold">ناوگان امداد خودرو چاره</span>
+                    <span className="block font-extrabold">مرکز تخصصی تعمیرات خودرو چاره</span>
                     <span className="text-[13px] text-navy-200">
-                      خودروهای امدادی مجهز، آماده اعزام شبانه‌روزی در تهران
+                      تعمیرگاه مجهز با جک‌های دوستون؛ سرویس و تعمیر تخصصی در مرکز
                     </span>
                   </span>
                 </span>
@@ -155,9 +153,13 @@ export default function Services() {
               />
               <figcaption className="absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-between gap-3 bg-navy-950/85 px-6 py-4 text-white backdrop-blur-sm">
                 <span className="flex items-center gap-3">
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-brand-500 text-navy-950">
-                    <Building2 className="size-6" aria-hidden />
-                  </span>
+                  <Image
+                    src="/images/icons/technician.jpg"
+                    alt=""
+                    width={512}
+                    height={512}
+                    className="size-11 shrink-0 rounded-xl object-cover ring-1 ring-white/20"
+                  />
                   <span>
                     <span className="block font-extrabold">مرکز خودرو چاره</span>
                     <span className="text-[13px] text-navy-200">

@@ -29,8 +29,8 @@ export default function SeoAbout() {
               <p>
                 برخلاف واسطه‌ها و اپلیکیشن‌های ارجاع سفارش، در خودرو چاره از لحظه تماس با
                 {" "}
-                <a href="tel:+982191855" className="font-extrabold text-brand-600 hover:text-brand-500">
-                  <span dir="ltr">۰۲۱ ۹۱۸۵۵</span>
+                <a href="tel:+989123022064" className="font-extrabold text-brand-600 hover:text-brand-500">
+                  <span dir="ltr">۰۹۱۲ ۳۰۲ ۲۰۶۴</span>
                 </a>{" "}
                 مستقیم با خود مجموعه طرف هستید: هزینه پیش از اعزام و بر اساس نرخ مصوب اتحادیه اعلام
                 می‌شود، نزدیک‌ترین خودروی امدادی اعزام می‌شود و در پایان برای خدمت و قطعه، فاکتور
