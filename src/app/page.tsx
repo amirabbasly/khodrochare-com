@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
+import BatteryShop from "@/components/BatteryShop";
 import Pricing from "@/components/Pricing";
 import WhyUs from "@/components/WhyUs";
 import Steps from "@/components/Steps";
@@ -11,7 +12,7 @@ import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import MobileCallBar from "@/components/MobileCallBar";
 import CallTracker from "@/components/CallTracker";
-import { COVERAGE, FAQS, RATING_BASE, SERVICES, SITE } from "@/lib/data";
+import { ALL_COVERAGE, FAQS, RATING_BASE, SERVICES, SITE } from "@/lib/data";
 
 const totalRatings = Object.values(RATING_BASE).reduce((a, b) => a + b, 0);
 const averageRating = (
@@ -56,9 +57,20 @@ const jsonLd = {
         addressCountry: "IR",
       },
       geo: { "@type": "GeoCoordinates", latitude: 35.6892, longitude: 51.389 },
-      areaServed: ["تهران", ...COVERAGE].map((name) => ({ "@type": "City", name })),
+      areaServed: ["تهران بزرگ", ...ALL_COVERAGE],
       openingHours: "Mo-Su 00:00-24:00",
       currenciesAccepted: "IRR",
+      paymentAccepted: "Cash, Credit Card, Debit Card",
+      knowsAbout: [
+        "امداد خودرو تهران",
+        "مکانیک سیار تهران",
+        "خرید باتری خودرو",
+        "فروش باتری در محل",
+        "تعویض باتری در محل",
+        "پنچرگیری سیار",
+        "یدک کش شبانه روزی",
+        "تعمیر خودرو در محل",
+      ],
       aggregateRating: {
         "@type": "AggregateRating",
         ratingValue: averageRating,
@@ -105,6 +117,7 @@ export default function Home() {
       <main className="flex-1">
         <Hero />
         <Services />
+        <BatteryShop />
         <Pricing />
         <WhyUs />
         <Steps />

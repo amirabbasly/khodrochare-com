@@ -30,16 +30,24 @@ npm run dev
 
 ## تبلیغات و ردیابی (Google Ads / Analytics)
 
-سایت برای کمپین‌های تبلیغاتی آماده است. کافی است شناسه‌های گوگل را در فایل `.env.local` قرار دهید (در Vercel از بخش Settings → Environment Variables):
+سایت در بالاترین سطح برای کمپین‌های تبلیغاتی آماده است. کافی است شناسه‌های گوگل را در فایل `.env.local` قرار دهید (در Vercel از بخش Settings → Environment Variables):
 
 ```bash
 NEXT_PUBLIC_GTM_ID=GTM-XXXXXXX
 NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_GADS_ID=AW-XXXXXXXXX
+NEXT_PUBLIC_GADS_CALL_LABEL=...     # برچسب تبدیل «تماس تلفنی» در گوگل ادز
+NEXT_PUBLIC_GADS_REQUEST_LABEL=...  # برچسب تبدیل «ثبت درخواست» در گوگل ادز
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=...  # تأیید سرچ کنسول (اختیاری)
 ```
 
-رویدادهای تبدیل (Conversion) به‌صورت خودکار به دیتالیر گوگل ارسال می‌شوند:
+امکانات تبلیغاتی پیاده‌سازی‌شده:
 
-- `call_click` — کلیک روی هر دکمه تماس تلفنی (همراه شماره تماس)
-- `service_select` — انتخاب یک خدمت از کارت‌های خدمات
-- `service_request` — ثبت موفق فرم درخواست خدمت (همراه نوع خدمت)
-- `review_submit` — ثبت موفق فرم رضایت مشتری (همراه امتیاز و خدمت)
+- رویدادهای تبدیل (Conversion) به‌صورت خودکار به دیتالیر گوگل ارسال و در صورت تنظیم برچسب، مستقیم به گوگل ادز شلیک می‌شوند:
+  - `call_click` — کلیک روی هر دکمه تماس تلفنی (همراه شماره تماس)
+  - `service_select` — انتخاب یک خدمت از کارت‌های خدمات
+  - `service_request` — ثبت موفق فرم درخواست خدمت (همراه نوع خدمت)
+  - `battery_finder` / `battery_call_click` / `battery_order_click` — تعامل‌های سکشن خرید باتری
+  - `review_submit` — ثبت موفق فرم رضایت مشتری (همراه امتیاز و خدمت)
+- پارامترهای تبلیغاتی ورودی (`gclid`, `fbclid`, `msclkid` و UTMها) ذخیره و به همه رویدادها و درخواست‌های ثبت‌شده الصاق می‌شوند تا مشخص شود هر مشتری از کدام کمپین آمده است.
+- برای کمپین «خرید باتری» از آدرس `https://khodrochare.com/#battery` به‌عنوان لندینگ استفاده کنید.

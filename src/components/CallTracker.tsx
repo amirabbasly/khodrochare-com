@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-import { trackEvent } from "@/lib/track";
+import { captureAttribution, trackEvent } from "@/lib/track";
 
-/** ثبت کلیک روی همه دکمه‌های تماس (tel:) به‌عنوان رویداد تبدیل تبلیغاتی call_click */
+/** ثبت پارامترهای تبلیغاتی ورودی (gclid/UTM) و کلیک روی دکمه‌های تماس (call_click) */
 export default function CallTracker() {
   useEffect(() => {
+    captureAttribution();
     const onClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       const link = target?.closest?.('a[href^="tel:"]') as HTMLAnchorElement | null;

@@ -5,6 +5,7 @@ import Reveal from "./Reveal";
 
 const QUICK_LINKS = [
   { href: "#services", label: "خدمات خودرو چاره" },
+  { href: "#battery", label: "خرید باتری خودرو در محل" },
   { href: "#pricing", label: "تعرفه خدمات" },
   { href: "#why", label: "چرا خودرو چاره" },
   { href: "#steps", label: "مراحل دریافت خدمت" },

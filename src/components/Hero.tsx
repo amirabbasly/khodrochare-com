@@ -6,7 +6,7 @@ import Reveal from "./Reveal";
 const TRUST = [
   { icon: "/images/icons/shield.jpg", text: "ضمانت خدمات و قطعه" },
   { icon: "/images/icons/timer.jpg", text: "رسیدن حدود ۳۰ دقیقه‌ای" },
-  { icon: "/images/icons/wallet.jpg", text: "فاکتور رسمی و قیمت شفاف" },
+  { icon: "/images/icons/invoice.jpg", text: "فاکتور رسمی و قیمت شفاف" },
 ];
 
 export default function Hero() {

@@ -7,6 +7,7 @@ import { SITE } from "@/lib/data";
 
 const NAV = [
   { href: "#services", label: "خدمات ما" },
+  { href: "#battery", label: "خرید باتری" },
   { href: "#pricing", label: "تعرفه خدمات" },
   { href: "#why", label: "چرا خودرو چاره" },
   { href: "#steps", label: "مراحل دریافت خدمت" },
@@ -93,7 +94,7 @@ export default function Header() {
             />
           </a>
 
-          <nav className="hidden items-center gap-6 text-[15px] font-semibold text-navy-100 xl:flex" aria-label="ناوبری اصلی">
+          <nav className="hidden items-center gap-5 text-[15px] font-semibold text-navy-100 xl:flex" aria-label="ناوبری اصلی">
             {NAV.map((item) => (
               <a key={item.href} href={item.href} className="transition hover:text-brand-400">
                 {item.label}

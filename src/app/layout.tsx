@@ -10,6 +10,8 @@ const DESCRIPTION =
 // آماده برای تبلیغات: با تنظیم این متغیرها در هاست، ردیابی فعال می‌شود (بدون نیاز به تغییر کد)
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GADS_ID = process.env.NEXT_PUBLIC_GADS_ID;
+const GTAG_LOADER_ID = GA_ID ?? GADS_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://khodrochare.com"),
@@ -28,6 +30,10 @@ export const metadata: Metadata = {
     "خودروبر تهران",
     "باتری به باتری تهران",
     "تعویض باتری در محل",
+    "خرید باتری خودرو تهران",
+    "خرید باتری ماشین",
+    "فروش باتری در محل تهران",
+    "قیمت باتری خودرو",
     "باتری در محل",
     "برق خودرو در محل",
     "خدمات خودرو در محل تهران",
@@ -39,6 +45,16 @@ export const metadata: Metadata = {
   category: "Automotive",
   alternates: {
     canonical: "/",
+    languages: { "fa-IR": "/" },
+  },
+  ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION } }
+    : {}),
+  other: {
+    "geo.region": "IR-23",
+    "geo.placename": "Tehran",
+    "geo.position": "35.6892;51.3890",
+    ICBM: "35.6892, 51.3890",
   },
   openGraph: {
     type: "website",
@@ -95,14 +111,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             />
           </noscript>
         )}
-        {GA_ID && (
+        {GTAG_LOADER_ID && (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_LOADER_ID}`}
               strategy="afterInteractive"
             />
-            <Script id="ga4-init" strategy="afterInteractive">
-              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`}
+            <Script id="gtag-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());${
+                GA_ID ? `gtag('config','${GA_ID}');` : ""
+              }${GADS_ID ? `gtag('config','${GADS_ID}');` : ""}`}
             </Script>
           </>
         )}

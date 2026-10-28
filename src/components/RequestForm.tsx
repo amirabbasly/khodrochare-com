@@ -14,7 +14,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { SERVICES, SITE, isValidMobile } from "@/lib/data";
-import { trackEvent } from "@/lib/track";
+import { getAttribution, trackEvent } from "@/lib/track";
 import Reveal from "./Reveal";
 
 const STORAGE_KEY = "khodrochare-requests";
@@ -83,7 +83,7 @@ export default function RequestForm() {
     const code = `KC-${Math.floor(100000 + Math.random() * 900000)}`;
     try {
       const prev = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "[]") as unknown[];
-      prev.push({ ...form, code, createdAt: new Date().toISOString() });
+      prev.push({ ...form, code, createdAt: new Date().toISOString(), attribution: getAttribution() });
       localStorage.setItem(STORAGE_KEY, JSON.stringify(prev));
     } catch {
       // ذخیره‌سازی محلی ممکن است در برخی مرورگرها غیرفعال باشد

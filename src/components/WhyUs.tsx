@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Check, X } from "lucide-react";
-import { COVERAGE } from "@/lib/data";
+import { COVERAGE_GROUPS, TEHRAN_ROUTES } from "@/lib/data";
 import Reveal from "./Reveal";
 
 const FEATURES = [
@@ -140,32 +140,53 @@ export default function WhyUs() {
           <div className="mt-12 rounded-[2rem] bg-navy-900 px-6 py-8 sm:px-10">
             <div className="flex flex-wrap items-center gap-3">
               <Image
-                src="/images/icons/tow.jpg"
+                src="/images/icons/pin.jpg"
                 alt=""
                 width={512}
                 height={512}
                 className="size-11 shrink-0 rounded-xl object-cover ring-1 ring-white/20"
               />
               <div>
-                <h3 className="text-lg font-extrabold text-white">مناطق تحت پوشش خودرو چاره</h3>
+                <h3 className="text-lg font-extrabold text-white">
+                  پوشش کامل تهران و تمام مسیرهای منتهی به آن
+                </h3>
                 <p className="text-sm text-navy-200">
-                  امداد شبانه‌روزی در سراسر تهران و حومه؛ نزدیک‌ترین خودروی امداد اعزام می‌شود.
+                  امداد شبانه‌روزی در همه مناطق تهران، شهرهای حومه و اتوبان‌ها و جاده‌های ورودی
+                  تهران؛ نزدیک‌ترین خودروی امداد خودرو چاره اعزام می‌شود.
                 </p>
               </div>
             </div>
-            <ul className="mt-6 flex flex-wrap gap-2" aria-label="فهرست مناطق تحت پوشش">
-              {COVERAGE.map((area) => (
-                <li
-                  key={area}
-                  className="rounded-full bg-navy-800 px-3.5 py-1.5 text-[13px] font-bold text-navy-100 ring-1 ring-white/10"
-                >
-                  {area}
-                </li>
+
+            <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {COVERAGE_GROUPS.map((group) => (
+                <div key={group.title} className="rounded-2xl bg-navy-800/70 p-5 ring-1 ring-white/10">
+                  <h4 className="font-extrabold text-brand-400">{group.title}</h4>
+                  <p className="mt-2.5 text-[13px] font-medium leading-7 text-navy-100">
+                    {group.areas.join("، ")}
+                  </p>
+                </div>
               ))}
-              <li className="rounded-full bg-brand-500 px-3.5 py-1.5 text-[13px] font-extrabold text-navy-950">
-                + تمام محله‌های تهران
-              </li>
-            </ul>
+            </div>
+
+            <div className="mt-4 rounded-2xl bg-navy-800/70 p-5 ring-1 ring-white/10">
+              <h4 className="font-extrabold text-brand-400">
+                اتوبان‌ها، بزرگراه‌ها و جاده‌های منتهی به تهران
+              </h4>
+              <ul className="mt-4 flex flex-wrap gap-2" aria-label="فهرست اتوبان‌ها و مسیرهای تحت پوشش">
+                {TEHRAN_ROUTES.map((route) => (
+                  <li
+                    key={route}
+                    className="rounded-full bg-navy-900 px-3.5 py-1.5 text-[13px] font-bold text-navy-100 ring-1 ring-white/10"
+                  >
+                    {route}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-[13px] font-semibold leading-6 text-navy-200">
+                محله یا مسیر شما در این فهرست نیست؟ اشکالی ندارد؛ خودرو چاره در تمام نقاط تهران
+                بزرگ و مسیرهای ورودی آن خدمت می‌دهد — فقط تماس بگیرید و موقعیتتان را بگویید.
+              </p>
+            </div>
           </div>
         </Reveal>
       </div>
