@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowLeft, Check, Phone } from "lucide-react";
-import { EXTRA_SERVICES, SERVICES, SITE } from "@/lib/data";
+import { EXTRA_SERVICES, LANDINGS, SERVICES, SITE } from "@/lib/data";
 import { trackEvent } from "@/lib/track";
 import Reveal from "./Reveal";
 
@@ -42,6 +43,7 @@ export default function Services() {
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service, i) => {
             const iconSrc = ICON_IMAGES[service.id] ?? "/images/icons/repair.jpg";
+            const landingSlug = LANDINGS.find((l) => l.serviceId === service.id)?.slug;
             return (
               <Reveal key={service.id} delay={(i % 3) * 100}>
                 <article
@@ -61,7 +63,15 @@ export default function Services() {
                     </span>
                   </div>
 
-                  <h3 className="mt-5 text-xl font-extrabold text-navy-900">{service.title}</h3>
+                  <h3 className="mt-5 text-xl font-extrabold text-navy-900">
+                    {landingSlug ? (
+                      <Link href={`/${landingSlug}`} className="transition hover:text-brand-600">
+                        {service.title}
+                      </Link>
+                    ) : (
+                      service.title
+                    )}
+                  </h3>
                   <p className="mt-1 text-[13px] font-bold text-brand-600">{service.short}</p>
                   <p className="mt-3 flex-1 text-[15px] leading-8 text-silver-600">
                     {service.description}

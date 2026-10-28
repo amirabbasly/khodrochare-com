@@ -42,8 +42,12 @@ const inputClass =
 
 const labelClass = "mb-2 flex items-center gap-1.5 text-sm font-extrabold text-navy-900";
 
-export default function RequestForm() {
-  const [form, setForm] = useState<FormState>(INITIAL);
+export default function RequestForm({ defaultService }: { defaultService?: string }) {
+  const initialForm: FormState = {
+    ...INITIAL,
+    service: SERVICES.some((s) => s.id === defaultService) ? (defaultService as string) : INITIAL.service,
+  };
+  const [form, setForm] = useState<FormState>(initialForm);
   const [error, setError] = useState("");
   const [trackingCode, setTrackingCode] = useState<string | null>(null);
   const formId = useId();
@@ -93,7 +97,7 @@ export default function RequestForm() {
   };
 
   const reset = () => {
-    setForm(INITIAL);
+    setForm(initialForm);
     setTrackingCode(null);
     setError("");
   };
@@ -158,6 +162,24 @@ export default function RequestForm() {
                     <span dir="ltr" className="text-lg">
                       {SITE.phoneMain}
                     </span>
+                  </a>
+                  <a
+                    href={SITE.whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between rounded-2xl bg-[#1fa855] px-5 py-4 font-extrabold text-white transition hover:bg-[#25c05f]"
+                  >
+                    <span className="flex items-center gap-2">
+                      <Image
+                        src="/images/icons/whatsapp.jpg"
+                        alt=""
+                        width={512}
+                        height={512}
+                        className="size-6 shrink-0 rounded-full object-cover"
+                      />
+                      ارسال لوکیشن در واتساپ
+                    </span>
+                    <span className="text-[13px] font-bold text-white/85">پاسخ سریع‌تر</span>
                   </a>
                 </div>
 

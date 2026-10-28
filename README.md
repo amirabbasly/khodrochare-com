@@ -50,4 +50,19 @@ NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=...  # تأیید سرچ کنسول (اخت
   - `battery_finder` / `battery_call_click` / `battery_order_click` — تعامل‌های سکشن خرید باتری
   - `review_submit` — ثبت موفق فرم رضایت مشتری (همراه امتیاز و خدمت)
 - پارامترهای تبلیغاتی ورودی (`gclid`, `fbclid`, `msclkid` و UTMها) ذخیره و به همه رویدادها و درخواست‌های ثبت‌شده الصاق می‌شوند تا مشخص شود هر مشتری از کدام کمپین آمده است.
-- برای کمپین «خرید باتری» از آدرس `https://khodrochare.com/#battery` به‌عنوان لندینگ استفاده کنید.
+- `messenger_click` — کلیک روی دکمه‌های واتساپ/تلگرام (همراه نام کانال)
+
+### صفحات لندینگ اختصاصی هر خدمت (آدرس نهایی ادگروپ‌ها)
+
+| خدمت | آدرس لندینگ |
+|---|---|
+| تعمیر خودرو در محل / مکانیک سیار | `https://khodrochare.com/tamir-khodro-dar-mahal` |
+| پنچرگیری در محل | `https://khodrochare.com/panchargiri-dar-mahal` |
+| خودروبر و یدک‌کش | `https://khodrochare.com/khodrobar-yadakkesh` |
+| خرید باتری خودرو | `https://khodrochare.com/kharid-battery` |
+| برق خودرو و دیاگ سیار | `https://khodrochare.com/bargh-khodro-dar-mahal` |
+| سرویس دوره‌ای در محل | `https://khodrochare.com/service-dorei-dar-mahal` |
+
+### شبکه‌های اجتماعی
+
+لینک‌های واتساپ و تلگرام بر اساس شماره ۰۹۱۲۳۰۲۲۰۶۴ فعال‌اند (`src/lib/data.ts` در `SOCIALS`). برای فعال‌سازی اینستاگرام یا آپارات، کافی است آدرس پیج را در همان فهرست وارد کنید تا دکمه‌اش خودکار در سایت نمایش داده شود.

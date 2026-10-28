@@ -208,6 +208,21 @@ export default function Header() {
               مرکز خودرو چاره
               <span dir="ltr">{SITE.phoneMain}</span>
             </a>
+            <a
+              href={SITE.whatsappHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 rounded-2xl bg-[#1fa855] px-5 py-3.5 font-extrabold text-white transition hover:bg-[#25c05f]"
+            >
+              <Image
+                src="/images/icons/whatsapp.jpg"
+                alt=""
+                width={512}
+                height={512}
+                className="size-6 shrink-0 rounded-full object-cover"
+              />
+              ارسال لوکیشن در واتساپ
+            </a>
             <p className="flex items-center justify-center gap-1.5 pt-1 text-center text-[13px] font-semibold text-navy-200">
               <Clock className="size-4 shrink-0 text-brand-400" aria-hidden />
               {SITE.hours}

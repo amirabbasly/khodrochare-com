@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { Clock, Phone } from "lucide-react";
-import { SERVICES, SITE } from "@/lib/data";
+import { SERVICES, SITE, SOCIALS } from "@/lib/data";
 import Reveal from "./Reveal";
+import SocialFloat from "./SocialFloat";
 
 const QUICK_LINKS = [
   { href: "#services", label: "خدمات خودرو چاره" },
@@ -73,6 +74,26 @@ export default function Footer() {
                 خودرو چاره؛ امداد خودرو و خدمات خودرو در محل در سراسر تهران، با ناوگان مجهز و
                 تکنسین‌های مجرب — شبانه‌روزی و با ضمانت.
               </p>
+              <div className="mt-5 flex flex-wrap items-center gap-2.5">
+                {SOCIALS.filter((s) => s.href && s.icon).map((social) => (
+                  <a
+                    key={social.id}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-full bg-navy-800 py-1.5 pl-4 pr-1.5 text-sm font-bold text-white ring-1 ring-white/10 transition hover:bg-navy-700"
+                  >
+                    <Image
+                      src={social.icon}
+                      alt=""
+                      width={512}
+                      height={512}
+                      className="size-7 rounded-full object-cover"
+                    />
+                    {social.label.replace(" خودرو چاره", "")}
+                  </a>
+                ))}
+              </div>
             </div>
 
             <nav aria-label="دسترسی سریع">
@@ -148,6 +169,7 @@ export default function Footer() {
           </div>
         </div>
       </footer>
+      <SocialFloat />
     </>
   );
 }
